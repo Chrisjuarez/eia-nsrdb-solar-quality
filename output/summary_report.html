@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EIA-NSRDB Solar Plant Quality Report</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+            color: #2c3e50;
+            line-height: 1.6;
+        }
+        h1 { color: #2c3e50; border-bottom: 3px solid #3498db; padding-bottom: 10px; }
+        h2 { color: #34495e; margin-top: 40px; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .stat-card .value { font-size: 28px; font-weight: bold; color: #2c3e50; }
+        .stat-card .label { font-size: 13px; color: #7f8c8d; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        th { background: #34495e; color: white; padding: 10px 8px; text-align: left; }
+        td { padding: 8px; border-bottom: 1px solid #ecf0f1; }
+        tr:hover { background: #f5f6fa; }
+        .tier-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+        }
+        .plot-container { margin: 20px 0; text-align: center; }
+        .plot-container img { max-width: 100%; border: 1px solid #ecf0f1; border-radius: 4px; }
+        .note { background: #fef9e7; border-left: 4px solid #f39c12; padding: 15px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>EIA-NSRDB Solar Plant Quality Report</h1>
+
+    <h2>Summary Statistics</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="value">456</div>
+            <div class="label">Plants Analyzed</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">0.813</div>
+            <div class="label">Mean Pearson R</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">0.864</div>
+            <div class="label">Median Pearson R</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">111</div>
+            <div class="label">Tier 1 Plants (R ≥ 0.9)</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">209</div>
+            <div class="label">Tier 2 Plants (R ≥ 0.8)</div>
+        </div>
+        <div class="stat-card">
+            <div class="value">2010-2024</div>
+            <div class="label">Analysis Period</div>
+        </div>
+    </div>
+
+    <h2>Quality Tier Distribution</h2>
+    <div class="plot-container">
+        <img src="correlation_histogram.png" alt="Correlation Distribution">
+    </div>
+
+    <h2>Geographic Distribution</h2>
+    <div class="plot-container">
+        <img src="geographic_quality_map.png" alt="Geographic Quality Map">
+    </div>
+
+    <h2>Top 30 Candidates</h2>
+    <div class="note">
+        <strong>Selection criteria:</strong> Composite score combining monthly Pearson R (40%),
+        annual Pearson R (20%), Spearman ρ (20%), performance ratio stability (10%),
+        and data completeness (10%). Plants with R ≥ 0.90 are classified as "Excellent."
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Plant ID</th>
+                <th>Name</th>
+                <th>State</th>
+                <th>MW</th>
+                <th>Pearson R</th>
+                <th>Spearman ρ</th>
+                <th>Annual R</th>
+                <th>Score</th>
+                <th>Years</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>1</td>
+            <td>58490</td>
+            <td>Spectrum Solar PV Power Project</td>
+            <td>NV</td>
+            <td>30.2</td>
+            <td><strong>0.982</strong></td>
+            <td>0.985</td>
+            <td>0.999</td>
+            <td>0.959</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>57455</td>
+            <td>NRG Solar Borrego I</td>
+            <td>CA</td>
+            <td>26.0</td>
+            <td><strong>0.962</strong></td>
+            <td>0.955</td>
+            <td>0.984</td>
+            <td>0.949</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>58030</td>
+            <td>Reeves Station Rd East</td>
+            <td>NJ</td>
+            <td>5.5</td>
+            <td><strong>0.954</strong></td>
+            <td>0.958</td>
+            <td>0.994</td>
+            <td>0.941</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>57650</td>
+            <td>Regulus Solar Project</td>
+            <td>CA</td>
+            <td>60.0</td>
+            <td><strong>0.969</strong></td>
+            <td>0.963</td>
+            <td>0.990</td>
+            <td>0.940</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>57589</td>
+            <td>Long Island Solar Farm LLC</td>
+            <td>NY</td>
+            <td>31.5</td>
+            <td><strong>0.944</strong></td>
+            <td>0.950</td>
+            <td>0.988</td>
+            <td>0.936</td>
+            <td>14</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>58973</td>
+            <td>White River Solar 2</td>
+            <td>CA</td>
+            <td>19.8</td>
+            <td><strong>0.965</strong></td>
+            <td>0.962</td>
+            <td>0.992</td>
+            <td>0.935</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>58660</td>
+            <td>Utah Red Hills Renewable Energy Park</td>
+            <td>UT</td>
+            <td>80.0</td>
+            <td><strong>0.971</strong></td>
+            <td>0.971</td>
+            <td>0.995</td>
+            <td>0.935</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>57657</td>
+            <td>Avra Valley Solar</td>
+            <td>AZ</td>
+            <td>25.0</td>
+            <td><strong>0.940</strong></td>
+            <td>0.938</td>
+            <td>0.967</td>
+            <td>0.933</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>58039</td>
+            <td>Axium Modesto Solar</td>
+            <td>CA</td>
+            <td>25.0</td>
+            <td><strong>0.955</strong></td>
+            <td>0.944</td>
+            <td>0.957</td>
+            <td>0.933</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>58592</td>
+            <td>Solar Gen 2</td>
+            <td>CA</td>
+            <td>163.2</td>
+            <td><strong>0.952</strong></td>
+            <td>0.954</td>
+            <td>0.986</td>
+            <td>0.930</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>10437</td>
+            <td>SEGS I</td>
+            <td>CA</td>
+            <td>20.0</td>
+            <td><strong>0.980</strong></td>
+            <td>0.973</td>
+            <td>0.987</td>
+            <td>0.930</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>57378</td>
+            <td>AV Solar Ranch One</td>
+            <td>CA</td>
+            <td>253.0</td>
+            <td><strong>0.960</strong></td>
+            <td>0.956</td>
+            <td>0.986</td>
+            <td>0.928</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>59273</td>
+            <td>SEPV Palmdale East</td>
+            <td>CA</td>
+            <td>10.0</td>
+            <td><strong>0.961</strong></td>
+            <td>0.961</td>
+            <td>0.976</td>
+            <td>0.928</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>58417</td>
+            <td>Lone Valley Solar Park I LLC</td>
+            <td>CA</td>
+            <td>10.0</td>
+            <td><strong>0.952</strong></td>
+            <td>0.948</td>
+            <td>0.993</td>
+            <td>0.927</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>59319</td>
+            <td>Rock Solid</td>
+            <td>NJ</td>
+            <td>8.0</td>
+            <td><strong>0.947</strong></td>
+            <td>0.961</td>
+            <td>0.995</td>
+            <td>0.924</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>58626</td>
+            <td>Western Antelope Blue Sky Ranch A</td>
+            <td>CA</td>
+            <td>20.0</td>
+            <td><strong>0.947</strong></td>
+            <td>0.947</td>
+            <td>0.976</td>
+            <td>0.923</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>59634</td>
+            <td>Sandstone Solar</td>
+            <td>AZ</td>
+            <td>45.0</td>
+            <td><strong>0.948</strong></td>
+            <td>0.945</td>
+            <td>0.992</td>
+            <td>0.923</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>58990</td>
+            <td>RE Columbia Two, LLC</td>
+            <td>CA</td>
+            <td>15.0</td>
+            <td><strong>0.944</strong></td>
+            <td>0.934</td>
+            <td>0.976</td>
+            <td>0.920</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>59185</td>
+            <td>Jacobstown</td>
+            <td>NJ</td>
+            <td>5.0</td>
+            <td><strong>0.942</strong></td>
+            <td>0.956</td>
+            <td>0.992</td>
+            <td>0.919</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>59628</td>
+            <td>Hanover</td>
+            <td>NJ</td>
+            <td>5.0</td>
+            <td><strong>0.951</strong></td>
+            <td>0.958</td>
+            <td>0.992</td>
+            <td>0.918</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>59413</td>
+            <td>Corcoran Solar 2</td>
+            <td>CA</td>
+            <td>19.8</td>
+            <td><strong>0.968</strong></td>
+            <td>0.964</td>
+            <td>0.935</td>
+            <td>0.917</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>58419</td>
+            <td>Victor Dry Farm Ranch B</td>
+            <td>CA</td>
+            <td>5.0</td>
+            <td><strong>0.945</strong></td>
+            <td>0.941</td>
+            <td>0.974</td>
+            <td>0.916</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>59237</td>
+            <td>Lone Valley Solar Park II LLC</td>
+            <td>CA</td>
+            <td>20.0</td>
+            <td><strong>0.937</strong></td>
+            <td>0.933</td>
+            <td>0.982</td>
+            <td>0.915</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>59450</td>
+            <td>Decatur Parkway Solar Project, LLC</td>
+            <td>GA</td>
+            <td>80.0</td>
+            <td><strong>0.935</strong></td>
+            <td>0.949</td>
+            <td>0.985</td>
+            <td>0.914</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td>58398</td>
+            <td>Heber Solar</td>
+            <td>CA</td>
+            <td>10.9</td>
+            <td><strong>0.945</strong></td>
+            <td>0.936</td>
+            <td>0.932</td>
+            <td>0.914</td>
+            <td>11</td>
+        </tr>
+        <tr>
+            <td>26</td>
+            <td>57256</td>
+            <td>PA Solar Park</td>
+            <td>PA</td>
+            <td>10.1</td>
+            <td><strong>0.923</strong></td>
+            <td>0.922</td>
+            <td>0.979</td>
+            <td>0.913</td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td>27</td>
+            <td>58262</td>
+            <td>Badger 1</td>
+            <td>AZ</td>
+            <td>14.8</td>
+            <td><strong>0.924</strong></td>
+            <td>0.919</td>
+            <td>0.964</td>
+            <td>0.913</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>28</td>
+            <td>58882</td>
+            <td>Mercer County Community College</td>
+            <td>NJ</td>
+            <td>7.5</td>
+            <td><strong>0.923</strong></td>
+            <td>0.933</td>
+            <td>0.973</td>
+            <td>0.910</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>29</td>
+            <td>58202</td>
+            <td>RE Victor Phelan Solar One LLC</td>
+            <td>CA</td>
+            <td>20.0</td>
+            <td><strong>0.918</strong></td>
+            <td>0.919</td>
+            <td>0.968</td>
+            <td>0.909</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>30</td>
+            <td>58500</td>
+            <td>RE Rio Grande Solar LLC</td>
+            <td>CA</td>
+            <td>5.0</td>
+            <td><strong>0.921</strong></td>
+            <td>0.910</td>
+            <td>0.967</td>
+            <td>0.908</td>
+            <td>12</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Methodology</h2>
+
+    <h3>Data sources</h3>
+    <p><strong>Plant generation:</strong> EIA API v2 facility-fuel endpoint
+    (<code>electricity/facility-fuel/data</code>), filtered to <code>fuel2002 = SUN</code>,
+    monthly frequency. The <code>generation</code> field is net generation in MWh
+    (post-inverter, after parasitic and station-service losses are subtracted).
+    Multiple generators within the same plant-month are summed, then duplicate
+    rows on <code>(plant_id, year, month)</code> are dropped before merging.</p>
+    <p><strong>Plant capacity and location:</strong> EIA API v2
+    operating-generator-capacity endpoint
+    (<code>electricity/operating-generator-capacity/data</code>), pulled for the final
+    month of the analysis window. <code>nameplate-capacity-mw</code> is summed across
+    every solar generator at the plant. Latitude and longitude come from the same
+    response.</p>
+    <p><strong>Solar resource:</strong> NREL NSRDB v4 (PSM aggregated GOES product
+    where available, MSG fallback otherwise) at the plant lat/lon. Hourly GHI
+    (W/m²) is summed within each calendar month to give a monthly total in
+    Wh/m². Years 2010 through 2024 are pulled for every plant.</p>
+
+    <h3>Filtering</h3>
+    <p>Plants must have AC nameplate capacity at or above
+    5.0 MW, valid lat/lon within CONUS bounds, and at least
+    10 years of EIA generation history within the
+    analysis window (2010-2024).</p>
+
+    <h3>Merge and per-plant aggregation</h3>
+    <p>Generation and GHI are inner-joined on
+    <code>(plant_id, year, month)</code>. Plants without overlapping records
+    in both feeds are dropped. Each plant's row set is then handed to the
+    metric routine, which produces one row of statistics per plant.</p>
+
+    <h3>Metrics</h3>
+    <p><strong>Monthly Pearson R</strong> = scipy.stats.pearsonr applied to
+    paired (monthly GHI, monthly normalized yield) values, where normalized
+    yield is generation_MWh divided by AC capacity_MW. Captures how tightly
+    month-to-month output tracks month-to-month irradiance.</p>
+    <p><strong>Spearman ρ</strong> = scipy.stats.spearmanr on the same paired
+    values. Rank-based, so robust to outliers and any monotonic but
+    non-linear response.</p>
+    <p><strong>Annual Pearson R</strong> = Pearson on yearly sums of
+    generation against yearly sums of GHI. Smooths short-term noise; needs
+    at least 5 years to compute.</p>
+    <p><strong>Performance ratio (PR)</strong> = monthly generation_MWh
+    divided by (capacity_MW × monthly GHI in kWh/m²). PR is a unitless
+    measure of how much of the resource the plant converts to electricity.
+    The pipeline reports <em>mean PR</em> and <em>CV of PR</em>
+    (standard deviation / mean), which captures temporal stability rather
+    than absolute level. PR magnitudes can look high for plants with large
+    DC overbuild relative to their reported AC nameplate, so the CV is the
+    more reliable comparison signal.</p>
+    <p><strong>R²</strong> = monthly Pearson R squared.</p>
+
+    <h3>Composite score</h3>
+    <p>Each plant gets a single 0-to-1 score combining the metrics:</p>
+    <ul>
+        <li>40 percent monthly Pearson R</li>
+        <li>20 percent annual Pearson R</li>
+        <li>20 percent Spearman ρ</li>
+        <li>10 percent (1 minus CV of PR), so lower volatility scores higher</li>
+        <li>10 percent data completeness, defined as min(1, n_years / 15)</li>
+    </ul>
+    <p>If a metric can't be computed for a plant (for example, fewer than five
+    years for the annual R), its weight is dropped and the remaining weights
+    are renormalized.</p>
+
+    <h3>Quality tiers</h3>
+    <p>Tiers are assigned solely on monthly Pearson R: Tier 1 at
+    R &ge; 0.9, Tier 2 at R &ge; 0.8,
+    Tier 3 at R &ge; 0.7, otherwise "Below Threshold."
+    Plants where Pearson R cannot be computed are tagged "Insufficient Data."</p>
+
+</body>
+</html>

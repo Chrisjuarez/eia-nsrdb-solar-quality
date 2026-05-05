@@ -1,0 +1,44 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS and editor metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+~$*
+
+# Raw and intermediate pipeline data
+data/
+
+# Generated outputs: keep only the curated public summary artifacts
+output/*
+!output/
+!output/summary_report.html
+!output/top_candidates.csv
+!output/correlation_results.csv
+!output/correlation_histogram.png
+!output/geographic_quality_map.png
+!output/ghi_vs_yield_scatter.png
+!output/annual_vs_monthly_r.png
+
+# Office exports can embed local absolute paths; regenerate locally if needed
+*.xlsx
+*.docx
